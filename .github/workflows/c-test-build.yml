@@ -1,0 +1,30 @@
+name: C Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout code
+
+    - name: Install GCC
+      run: sudo apt-get install gcc
+
+    - name: Build Project
+      run: gcc -o neural_network main.c -lm
+      # Replace the above command with your actual build command, or use make if you have a Makefile:
+      # run: make
+
+    - name: Run Tests
+      run: ./neural_network
+      # Add any commands here to run your tests, such as:
+      # run: make test
